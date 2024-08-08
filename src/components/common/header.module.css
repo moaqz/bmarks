@@ -1,0 +1,15 @@
+.header {
+  --height: 3.75rem;
+
+  padding-inline: 1.5rem;
+  height: var(--height);
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.25rem;
+}
+
+.logo {
+  font-weight: bolder;
+  text-decoration: none;
+  color: inherit;
+}

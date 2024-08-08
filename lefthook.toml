@@ -1,0 +1,11 @@
+# https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+[pre-commit]
+parallel = true
+
+[pre-commit.commands.lint]
+glob = "*.{js,ts,jsx,tsx,vue,json}"
+run = "pnpm eslint {staged_files}"
+
+[pre-commit.commands.lychee]
+glob = "*.md"
+run = "lychee --max-concurrency 3 -v {staged_files}"

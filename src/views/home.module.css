@@ -1,0 +1,59 @@
+.content {
+  --space-between: 2.25rem;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--space-between);
+  padding: 1.5rem;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+
+  & h1 {
+    font-size: 2rem;
+  }
+
+  & p {
+    color: var(--gray-12);
+  }
+}
+
+.badge {
+  width: fit-content;
+  border-radius: 1.5rem;
+  padding: 0.125rem 0.75rem;
+  background-color: var(--blue-3);
+  color: var(--blue-11);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  & p {
+    text-wrap: balance;
+    color: var(--gray-11);
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--blue-9);
+  color: #fff;
+}

@@ -1,0 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  color-scheme: dark;
+
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
