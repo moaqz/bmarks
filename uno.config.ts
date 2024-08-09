@@ -1,4 +1,4 @@
-import { defineConfig, presetMini } from "unocss";
+import { defineConfig } from "unocss";
 
 export default defineConfig({
   theme: {
