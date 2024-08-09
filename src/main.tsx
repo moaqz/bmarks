@@ -2,10 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import "~/styles/reset.css";
-import "~/styles/theme.css";
-import "~/styles/utils.css";
 import "@fontsource-variable/inter";
+import "virtual:uno.css";
+import "@unocss/reset/tailwind-compat.css";
 
 import { RootLayout } from "~/components/layouts/root";
 import HomeView from "~/views/home-view";

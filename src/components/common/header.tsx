@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import styles from "./header.module.css";
 
 export function Header() {
   return (
-    <header className={`${styles.header} container`}>
-      <Link to="/" className={styles.logo}>bmarks</Link>
+    <header className="h-15 flex items-center justify-between">
+      <Link to="/" className="font-extrabold">bmarks</Link>
     </header>
   );
 }

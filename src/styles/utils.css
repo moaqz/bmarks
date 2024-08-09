@@ -1,6 +1,0 @@
-.container {
-  --width: 40rem;
-
-  max-width: var(--width);
-  margin-inline: auto;
-}
