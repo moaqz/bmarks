@@ -12,7 +12,7 @@ export function RootLayout() {
   }, [loaderData, updateUser]);
 
   return (
-    <div className="flex flex-col max-w-xl mx-auto px-4 gap-9">
+    <div className="flex flex-col px-4 max-w-xl mx-auto gap-9">
       <Header />
       <main>
         <Outlet />

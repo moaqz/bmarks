@@ -5,7 +5,7 @@ export function HomeView() {
   return (
     <div className="flex flex-col gap-6">
       <section className="flex flex-col gap-y-3">
-        <span className="w-fit px-3 py-0.5 text-sm font-medium bg-blue-3 text-blue-11 rounded-xl">
+        <span className="text-sm w-fit px-3 py-0.5 font-medium bg-blue-3 text-blue-11 rounded-xl">
           beta
         </span>
         <h1 className="text-3xl font-extrabold">bmarks</h1>
@@ -22,7 +22,7 @@ export function HomeView() {
 
         {FEATURES.map(feature => (
           <div key={feature.iconName} className="flex items-center gap-x-3">
-            <div className="items-center inline-flex justify-center rounded-md bg-blue-9 text-white size-8 px-2">
+            <div className="items-center justify-center inline-flex rounded-md bg-blue-9 text-white size-8 px-2">
               <svg width="20" height="20">
                 <use href={`/icons/features.svg#${feature.iconName}`} />
               </svg>
