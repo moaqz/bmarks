@@ -42,6 +42,7 @@ export default defineConfig({
     "form-item": "flex flex-col gap-1",
     "label": "text-gray-11 font-500 text-sm",
     "input-text": "h-9 px-3 bg-gray-1 border border-gray-6 rounded focus:outline focus:outline-2 focus:outline-blue-8",
-    "button": "h-9 px-3 bg-blue-9 rounded-md inline-flex items-center justify-center gap-3 font-600 transition-colors disabled:opacity-50 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-8 hover:bg-blue-10",
+    "button": "h-9 px-3 rounded-md inline-flex items-center justify-center gap-3 font-600 transition-colors disabled:opacity-50 focus:outline focus:outline-2 focus:outline-offset-2 bg-blue-9 focus:outline-blue-8 hover:bg-blue-10",
+    "button-gray": "h-9 px-3 rounded-md inline-flex items-center justify-center gap-3 font-600 transition-colors disabled:opacity-50 focus:outline focus:outline-2 focus:outline-offset-2 bg-gray-9 focus:outline-gray-8 hover:bg-gray-10",
   },
 });

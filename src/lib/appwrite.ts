@@ -1,8 +1,10 @@
-import { Account, Client, ID } from "appwrite";
+import { Account, Client, Databases, ID } from "appwrite";
 
-const config = {
+export const config = {
   endpoint: import.meta.env.VITE_APPWRITE_API_ENDPOINT as string,
   project: import.meta.env.VITE_APPWRITE_PROJECT_ID as string,
+  databaseID: import.meta.env.VITE_APPWRITE_DATABASE_ID,
+  bookmarksCollectionID: import.meta.env.VITE_APPWRITE_BOOKMARKS_COLLECTION_ID,
 };
 
 if (!config.endpoint || !config.project) {
@@ -17,5 +19,6 @@ const client = new Client()
 
 export const SERVICES = {
   account: new Account(client),
+  databases: new Databases(client),
   id: ID,
 };

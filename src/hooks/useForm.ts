@@ -19,5 +19,9 @@ export function useForm<T>(initialData = {} as T) {
     submitFunction(data).finally(() => setIsSubmitting(false));
   };
 
-  return { data, handleChange, handleSubmit, isSubmitting };
+  const resetForm = () => {
+    setData(initialData);
+  };
+
+  return { data, handleChange, handleSubmit, isSubmitting, resetForm };
 }
