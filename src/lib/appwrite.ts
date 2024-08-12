@@ -5,6 +5,7 @@ export const config = {
   project: import.meta.env.VITE_APPWRITE_PROJECT_ID as string,
   databaseID: import.meta.env.VITE_APPWRITE_DATABASE_ID,
   bookmarksCollectionID: import.meta.env.VITE_APPWRITE_BOOKMARKS_COLLECTION_ID,
+  tagsCollectionID: import.meta.env.VITE_APPWRITE_TAGS_COLLECTION_ID,
 };
 
 if (!config.endpoint || !config.project) {
