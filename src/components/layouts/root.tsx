@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 
 import { Footer } from "~/components/common/footer";
@@ -17,7 +17,16 @@ export function RootLayout() {
     <div className="min-h-dvh flex flex-col px-4 max-w-xl mx-auto gap-9">
       <Header />
       <main className="flex-1">
-        <Outlet />
+        <Suspense fallback={(
+          <div className="flex justify-center">
+            <svg width="32" height="32" className="animate-spin text-blue-10">
+              <use href="/icons/ui.svg#loader-circle" />
+            </svg>
+          </div>
+        )}
+        >
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>

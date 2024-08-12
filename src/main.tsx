@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Toaster } from "sonner";
@@ -7,20 +7,34 @@ import "@fontsource-variable/inter";
 import "virtual:uno.css";
 import "@unocss/reset/tailwind-compat.css";
 
-// Services.
 import { SERVICES } from "~/lib/appwrite";
+import { RootLayout } from "~/components/layouts/root";
+import { AuthProvider } from "~/contexts/auth-provider";
 
 // Views and Layouts.
-import { SignUpView } from "~/views/sign-up";
-import { LoginView } from "~/views/login";
-import { GuestLayout } from "~/components/layouts/guest";
-import { BookmarksView } from "~/views/bookmarks";
-import { AuthenticatedLayout } from "~/components/layouts/authenticated";
-import { RootLayout } from "~/components/layouts/root";
-import { HomeView } from "~/views/home";
+const HomeView = lazy(() => import("~/views/home").then((module) => {
+  return { default: module.HomeView };
+}));
 
-// Providers.
-import { AuthProvider } from "~/contexts/auth-provider";
+const SignUpView = lazy(() => import("~/views/sign-up").then((module) => {
+  return { default: module.SignUpView };
+}));
+
+const LoginView = lazy(() => import("~/views/login").then((module) => {
+  return { default: module.LoginView };
+}));
+
+const BookmarksView = lazy(() => import("~/views/bookmarks").then((module) => {
+  return { default: module.BookmarksView };
+}));
+
+const AuthenticatedLayout = lazy(() => import("~/components/layouts/authenticated").then((module) => {
+  return { default: module.AuthenticatedLayout };
+}));
+
+const GuestLayout = lazy(() => import("~/components/layouts/guest").then((module) => {
+  return { default: module.GuestLayout };
+}));
 
 const router = createBrowserRouter([
   {
