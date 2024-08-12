@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
+
+import { Footer } from "~/components/common/footer";
 import { Header } from "~/components/common/header";
 import { useAuth } from "~/hooks/useAuth";
 
@@ -12,11 +14,12 @@ export function RootLayout() {
   }, [loaderData, updateUser]);
 
   return (
-    <div className="flex flex-col px-4 max-w-xl mx-auto gap-9">
+    <div className="min-h-dvh flex flex-col px-4 max-w-xl mx-auto gap-9">
       <Header />
-      <main>
+      <main className="flex-1">
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 }
