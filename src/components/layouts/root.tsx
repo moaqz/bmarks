@@ -14,7 +14,7 @@ export function RootLayout() {
   }, [loaderData, updateUser]);
 
   return (
-    <div className="min-h-dvh flex flex-col px-4 max-w-xl mx-auto gap-9">
+    <div className="flex flex-col px-4 min-h-dvh max-w-xl mx-auto gap-9">
       <Header />
       <main className="flex-1">
         <Suspense fallback={(

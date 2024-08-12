@@ -173,8 +173,8 @@ export function BookmarkCard(props: Props) {
           </svg>
         </button>
 
-        <dialog ref={dialogRef} className="w-full p-6 rounded bg-gray-2 border border-gray-3 max-w-lg text-inherit backdrop:bg-gray-2/80">
-          <div className="text-center flex flex-col gap-y-3 mb-6">
+        <dialog ref={dialogRef} className="w-full rounded bg-gray-2 border border-gray-3 p-6 max-w-lg text-inherit backdrop:bg-gray-2/80">
+          <div className="flex flex-col gap-y-3 text-center mb-6">
             <h1 className="font-bold text-xl">Delete Bookmark!</h1>
             <p className="text-sm text-gray-11">
               Are you sure you want to delete

@@ -3,7 +3,7 @@ import { GITHUB_REPOSITORY } from "~/constants/social";
 
 export function Footer() {
   return (
-    <footer className="py-6 flex flex-col gap-y-1 items-center sm:flex-row sm:justify-between text-gray-11 text-sm">
+    <footer className="flex flex-col gap-y-1 items-center text-gray-11 text-sm py-6 sm:flex-row sm:justify-between">
       <div className="flex items-center gap-3">
         <Link to="/" className="hover:underline">
           Home
