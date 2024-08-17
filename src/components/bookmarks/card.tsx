@@ -4,9 +4,11 @@ import { mutate } from "swr";
 
 import { DeleteBookmarkModal } from "./delete-bookmark-modal";
 import { BookmarkCardEditor } from "./card-editor";
+import { TagSelector } from "~/components/tags/tag-selector";
 import { SERVICES, config } from "~/lib/appwrite";
 import { BOOKMARKS_KEY } from "~/lib/swr";
 import type { Bookmark } from "~/types/bookmark";
+import type { Tag } from "~/types/tag";
 
 interface Props {
   data: Bookmark;
@@ -18,6 +20,7 @@ export function BookmarkCard(props: Props) {
   const { data: bookmark } = props;
   const [editable, setEditable] = useState(false);
   const [deleteBookmarkModalOpen, setDeleteBookmarkModal] = useState(false);
+  const [tagSelectorModalOpen, setTagSelectorMenu] = useState(false);
 
   const handleOnDelete = () => {
     return SERVICES.databases.deleteDocument(
@@ -54,6 +57,15 @@ export function BookmarkCard(props: Props) {
     });
   };
 
+  const handleOnTagSelect = (selectedTag: Tag | null) => {
+    return SERVICES.databases.updateDocument(
+      config.databaseID,
+      config.bookmarksCollectionID,
+      bookmark.$id,
+      { tag_id: selectedTag ? selectedTag.$id : null },
+    );
+  };
+
   const ACTIONS = [
     {
       title: "Edit bookmark",
@@ -64,6 +76,11 @@ export function BookmarkCard(props: Props) {
       title: "Delete bookmark",
       icon: "trash",
       action: () => setDeleteBookmarkModal(true),
+    },
+    {
+      title: "Attach tag",
+      icon: "tag",
+      action: () => setTagSelectorMenu(true),
     },
   ];
 
@@ -126,6 +143,17 @@ export function BookmarkCard(props: Props) {
                 handleClose={() => setDeleteBookmarkModal(false)}
                 onSubmit={handleOnDelete}
                 bookmark={bookmark}
+              />
+            )
+          : null}
+
+        {tagSelectorModalOpen
+          ? (
+              <TagSelector
+                defaultValue={bookmark.tag_id}
+                isOpen={tagSelectorModalOpen}
+                handleClose={() => setTagSelectorMenu(false)}
+                onSubmit={handleOnTagSelect}
               />
             )
           : null}

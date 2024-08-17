@@ -25,7 +25,7 @@ export function Modal(props: Props) {
 
       <div className="fixed inset-0 flex items-center justify-center">
         <DialogPanel className="w-full rounded bg-gray-2 border border-gray-3 p-6 max-w-lg text-inherit backdrop:bg-gray-2/80">
-          <DialogTitle className="font-bold text-xl text-center pb-3">{title}</DialogTitle>
+          <DialogTitle className="font-bold text-center text-xl pb-3">{title}</DialogTitle>
           {children}
         </DialogPanel>
       </div>

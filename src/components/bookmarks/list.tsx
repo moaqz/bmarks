@@ -52,7 +52,7 @@ export function BookmarksList() {
           );
         })
         : (
-            <div className="flex flex-col gap-y-3 p-6 justify-center items-center border border-gray-3 rounded bg-gray-2 border-dashed">
+            <div className="flex flex-col gap-y-3 justify-center items-center border border-gray-3 rounded bg-gray-2 p-6 border-dashed">
               <svg width="32" height="32">
                 <use href="/icons/ui.svg#bookmark" />
               </svg>
