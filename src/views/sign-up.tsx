@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 import { useForm } from "~/hooks/useForm";
-import { SERVICES } from "~/lib/appwrite";
 import { useAuth } from "~/hooks/useAuth";
 
 interface SignUpData {
@@ -12,7 +11,7 @@ interface SignUpData {
 }
 
 export function SignUpView() {
-  const { updateUser } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
   const {
     data,
@@ -28,13 +27,7 @@ export function SignUpView() {
         return;
       }
 
-      const user = await SERVICES.account.create(
-        SERVICES.id.unique(),
-        data.email,
-        data.password,
-      );
-
-      updateUser(user);
+      await register(data.email, data.password);
       navigate("/bookmarks");
     }
     catch (e) {

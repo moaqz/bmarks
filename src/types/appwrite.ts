@@ -1,3 +1,7 @@
+import type { Models } from "appwrite";
+
+export type UserModel = Models.User<Models.Preferences>;
+
 export interface CollectionDefaults {
   $id: string;
   $createdAt: string;

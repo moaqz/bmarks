@@ -1,8 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import { toast } from "sonner";
+
 import { useForm } from "~/hooks/useForm";
-import { SERVICES } from "~/lib/appwrite";
 import { useAuth } from "~/hooks/useAuth";
 
 interface LoginData {
@@ -12,7 +11,7 @@ interface LoginData {
 
 export function LoginView() {
   const navigate = useNavigate();
-  const { updateUser } = useAuth();
+  const { login } = useAuth();
   const {
     data,
     handleChange,
@@ -22,11 +21,7 @@ export function LoginView() {
 
   const onSubmit = async (data: LoginData) => {
     try {
-      const user = await SERVICES
-        .account
-        .createEmailPasswordSession(data.email, data.password);
-
-      updateUser(user);
+      await login(data.email, data.password);
       navigate("/bookmarks");
     }
     catch (e) {

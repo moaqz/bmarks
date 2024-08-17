@@ -4,13 +4,14 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import { Footer } from "~/components/common/footer";
 import { Header } from "~/components/common/header";
 import { useAuth } from "~/hooks/useAuth";
+import type { UserModel } from "~/types/appwrite";
 
 export function RootLayout() {
   const { updateUser } = useAuth();
   const loaderData = useLoaderData();
 
   useEffect(() => {
-    updateUser(loaderData);
+    updateUser(loaderData as UserModel | null);
   }, [loaderData, updateUser]);
 
   return (
