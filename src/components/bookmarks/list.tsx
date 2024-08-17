@@ -1,31 +1,10 @@
-import useSWR from "swr";
-import { Query } from "appwrite";
-import { useEffect } from "react";
-
 import { BookmarkCard } from "./card";
 import { BookmarkCardSkeleton } from "./card-skeleton";
-import { BOOKMARKS_KEY } from "~/lib/swr";
-import { SERVICES, config } from "~/lib/appwrite";
-import { useFilters } from "~/hooks/useFilters";
 import type { Bookmark } from "~/types/bookmark";
-
-const QUERIES = [
-  Query.orderDesc("$createdAt"),
-];
+import { useBookmarks } from "~/hooks/useBookmarks";
 
 export function BookmarksList() {
-  const { selectedTag } = useFilters();
-  const { data, isLoading, mutate } = useSWR(BOOKMARKS_KEY, {
-    fetcher: () => SERVICES.databases.listDocuments(
-      config.databaseID,
-      config.bookmarksCollectionID,
-      !selectedTag ? QUERIES : [...QUERIES, Query.equal("tag_id", selectedTag)],
-    ),
-  });
-
-  useEffect(() => {
-    mutate();
-  }, [selectedTag, mutate]);
+  const { data, isLoading, hasBookmarks } = useBookmarks();
 
   if (isLoading) {
     return (
@@ -38,8 +17,6 @@ export function BookmarksList() {
       </ul>
     );
   }
-
-  const hasBookmarks = data.total > 0;
 
   return (
     <ul className="flex flex-col gap-y-3">
