@@ -7,6 +7,7 @@ import { BookmarkCardSkeleton } from "./card-skeleton";
 import { BOOKMARKS_KEY } from "~/lib/swr";
 import { SERVICES, config } from "~/lib/appwrite";
 import { useFilters } from "~/hooks/useFilters";
+import type { Bookmark } from "~/types/bookmark";
 
 const QUERIES = [
   Query.orderDesc("$createdAt"),
@@ -43,15 +44,10 @@ export function BookmarksList() {
   return (
     <ul className="flex flex-col gap-y-3">
       {hasBookmarks
-        ? data.documents.map((bookmark: any) => {
+        ? data.documents.map((bookmark: Bookmark) => {
           return (
             <li key={bookmark.$id}>
-              <BookmarkCard
-                favicon={bookmark.favicon_url}
-                id={bookmark.$id}
-                title={bookmark.title}
-                url={bookmark.url}
-              />
+              <BookmarkCard data={bookmark} />
             </li>
           );
         })
