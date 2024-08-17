@@ -15,37 +15,53 @@
 
 ## 🔨 Local Setup
 
-This guide covers how to run Appwrite locally using `Docker`. Ensure that you have `Docker` installed.
-
 > [!IMPORTANT]
-> Make sure the Docker daemon is running before executing the command.
+> This guide covers how to run Appwrite locally using `Docker`. Ensure that you have `Docker` installed and the Docker daemon is running.
 
-1. **Start the `Appwrite` service:**
+1. Clone the repository
+
+```bash
+git clone git@github.com:moaqz/bmarks.git --depth 1
+cd bmarks
+```
+
+2. **Start the `Appwrite` service:**
+
+Before running the service, I highly recommend reading the [system requirements](https://appwrite.io/docs/advanced/self-hosting#system-requirements) in the Appwrite documentation.
+
+If your system meets the requirements, run the following command:
 
 ```bash
 docker compose -f appwrite/docker-compose.yml up
 ```
 
-This command could take time. The Appwrite contains 22 services that needs to boot up.
+> [!NOTE]
+> This command may take some time to complete. Appwrite includes 22 services that need to start up.
 
-1. **Create user account and an organization:**
+3. **Create a user account and an organization:**
 
 Open the Appwrite console by navigating to [http://localhost](http://localhost). Create a new user account.
 
 After creating the account, you will be redirected to the account panel. Go to the [Organizations section](http://localhost/console/account/organizations) and create an organization.
 
-3. **Create a project and get an API Token:**
+4. **Create a project and get an API Token:**
 
-In the organization panel, create a new project. After creating the project, generate an API token by following these steps:
+In the organization panel, create a new project. After creating the project, copy the `Project ID` and add it to the `.env` file.
 
-- Navigate to the project's settings.
-- Under the "API credentials" section, click on the `View API Keys` button and create an API key with all permissions.
-- Copy the `API key secret` and the `Project ID` and add them to the .env file.
+![api-key](/public/assets/api-key.png)
+
+The `Project ID` is located next to the name of your project. You can also find it in the settings button in the sidebar.
+
+5. **Get an API Token:**
+
+On the getting started page of your project, you will see a section named `Integrate with your server`. Click the `API Key` button and create an API key with all permissions.
+
+![integrate-with-your-server](/public/assets/integrate-with-your-server.png)
 
 > [!WARNING]
 > The API key requires all permissions for the setup script to run. It is recommended to delete the API key after running the script, as it is only needed for this initial setup.
 
-4. **Run the setup script to configure the database schema:**
+6. **Run the setup script to configure the database schema:**
 
 ```bash
 pnpm run setup
@@ -53,7 +69,7 @@ pnpm run setup
 
 The script will output the variables that you need to replace in the `.env` file.
 
-5. **Run the project in a separate terminal:**
+7. **Run the project in a separate terminal:**
 
 ```bash
 pnpm dev
