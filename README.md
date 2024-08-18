@@ -2,7 +2,7 @@
 
 - Organize your bookmarks by tags.
 
-- Export your bookmarks as CSV and JSON.
+- Export your bookmarks as JSON.
 
 - Generate an access token to access your data.
 
@@ -47,7 +47,7 @@ Open the Appwrite console by navigating to [http://localhost](http://localhost).
 
 After creating the account, you will be redirected to the account panel. Go to the [Organizations section](http://localhost/console/account/organizations) and create an organization.
 
-1. **Create a project:**
+4. **Create a project:**
 
 In the organization panel, create a new project. After creating the project, copy the `Project ID` and add it to the `.env` file.
 
