@@ -7,9 +7,8 @@ import "@fontsource-variable/inter";
 import "virtual:uno.css";
 import "@unocss/reset/tailwind-compat.css";
 
-import { SERVICES } from "~/lib/appwrite";
 import { RootLayout } from "~/components/layouts/root";
-import { AuthProvider } from "~/contexts/auth-provider";
+import { AuthProvider } from "~/contexts/auth-context";
 
 // Views and Layouts.
 const HomeView = lazy(() => import("~/views/home").then((module) => {
@@ -28,56 +27,25 @@ const BookmarksView = lazy(() => import("~/views/bookmarks").then((module) => {
   return { default: module.BookmarksView };
 }));
 
-const AuthenticatedLayout = lazy(() => import("~/components/layouts/authenticated").then((module) => {
-  return { default: module.AuthenticatedLayout };
-}));
-
-const GuestLayout = lazy(() => import("~/components/layouts/guest").then((module) => {
-  return { default: module.GuestLayout };
-}));
-
 const router = createBrowserRouter([
   {
     element: <RootLayout />,
-    loader: async () => {
-      /**
-       * Loads the user when the page is initially loaded.
-       * The `AuthProvider` periodically checks the session and manages the user state.
-       */
-      try {
-        const user = await SERVICES.account.get();
-        return user;
-      }
-      catch {
-        return null;
-      }
-    },
     children: [
       {
         path: "/",
         element: <HomeView />,
       },
       {
-        element: <GuestLayout />,
-        children: [
-          {
-            path: "/login",
-            element: <LoginView />,
-          },
-          {
-            path: "/sign-up",
-            element: <SignUpView />,
-          },
-        ],
+        path: "/login",
+        element: <LoginView />,
       },
       {
-        element: <AuthenticatedLayout />,
-        children: [
-          {
-            path: "/bookmarks",
-            element: <BookmarksView />,
-          },
-        ],
+        path: "/sign-up",
+        element: <SignUpView />,
+      },
+      {
+        path: "/bookmarks",
+        element: <BookmarksView />,
       },
     ],
   },
