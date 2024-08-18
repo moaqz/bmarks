@@ -71,6 +71,7 @@ export function AuthProvider(props: PropsWithChildren) {
 
   const logout = useCallback(async () => {
     await SERVICES.account.deleteSession("current");
+    setUser(null);
     setAuthState(AUTH_STATES.pending);
   }, []);
 
