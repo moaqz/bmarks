@@ -27,6 +27,10 @@ const BookmarksView = lazy(() => import("~/views/bookmarks").then((module) => {
   return { default: module.BookmarksView };
 }));
 
+const AccountView = lazy(() => import("~/views/account").then((module) => {
+  return { default: module.AccountView };
+}));
+
 const router = createBrowserRouter([
   {
     element: <RootLayout />,
@@ -46,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/bookmarks",
         element: <BookmarksView />,
+      },
+      {
+        path: "/account",
+        element: <AccountView />,
       },
     ],
   },
