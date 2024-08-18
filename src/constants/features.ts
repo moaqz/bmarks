@@ -1,7 +1,7 @@
 export const FEATURES = [
   {
     iconName: "download",
-    description: "Export your bookmarks as CSV and JSON.",
+    description: "Export your bookmarks as JSON.",
   },
   {
     iconName: "tag",

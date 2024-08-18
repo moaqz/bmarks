@@ -10,7 +10,7 @@ export function HomeView() {
         </span>
         <h1 className="text-3xl font-extrabold">bmarks</h1>
         <p className="text-gray-11">
-          Simple bookmark manager to organize your favorites websites
+          Simple bookmark manager to organize your favorites websites.
         </p>
         <div>
           <Link to="/bookmarks" className="button">Get started</Link>
@@ -22,7 +22,7 @@ export function HomeView() {
 
         {FEATURES.map(feature => (
           <div key={feature.iconName} className="flex items-center gap-x-3">
-            <div className="items-center justify-center inline-flex rounded-md bg-blue-9 text-white size-8 px-2">
+            <div className="items-center justify-center inline-flex rounded-md bg-blue-9 text-white size-9">
               <svg width="20" height="20">
                 <use href={`/icons/features.svg#${feature.iconName}`} />
               </svg>
