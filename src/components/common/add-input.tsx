@@ -29,7 +29,7 @@ export function AddInput() {
     const { data: metadata }: MetadataAPIResponse = await res.json();
 
     const payload = {
-      favicon_url: metadata.favicon || null,
+      favicon_url: isValidHttpURL(metadata.favicon) ? metadata.favicon : null,
       url,
       title: metadata.title,
     };
