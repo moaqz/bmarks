@@ -14,7 +14,7 @@ interface Props {
   data: Bookmark;
 }
 
-const FALLBACK_FAVICON = "/vite.svg";
+const FALLBACK_FAVICON = import.meta.env.VITE_FALLBACK_ICON;
 
 export function BookmarkCard(props: Props) {
   const { data: bookmark } = props;
