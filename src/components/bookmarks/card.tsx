@@ -86,7 +86,7 @@ export function BookmarkCard(props: Props) {
 
   return (
     <article className="gap-3 px-4 py-3 border border-gray-3 rounded bg-gray-2 grid grid-cols-2 sm:grid-cols-[auto_1fr_auto]">
-      <div className="inline-flex items-center sm:order-1">
+      <div className="inline-flex items-center size-6 sm:order-1">
         <img
           src={bookmark.favicon_url || FALLBACK_FAVICON}
           alt={bookmark.title}
@@ -111,9 +111,9 @@ export function BookmarkCard(props: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={-1}
-                className="group flex flex-col gap-0.5 order-10 col-span-2 sm:order-2 sm:col-span-1"
+                className="group flex flex-col gap-0.5 order-10 col-span-2 sm:order-2 sm:col-span-1 sm:max-w-90"
               >
-                <h2 className="text-gray-12 text-sm text-pretty line-clamp-3 group-hover:underline">{bookmark.title}</h2>
+                <h2 className="text-gray-12 text-sm line-clamp-3 break-words group-hover:underline">{bookmark.title}</h2>
                 <p className="text-sm text-gray-11 truncate">{bookmark.url}</p>
               </a>
             )

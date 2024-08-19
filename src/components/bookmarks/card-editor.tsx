@@ -55,7 +55,7 @@ export function BookmarkCardEditor(props: Props) {
   };
 
   return (
-    <div ref={wrapperRef} className="flex flex-col group gap-0.5 order-10 col-span-2 sm:order-2 sm:col-span-1">
+    <div ref={wrapperRef} className="flex flex-col group gap-0.5 order-10 col-span-2 sm:order-2 sm:col-span-1 sm:max-w-90">
       <input
         type="text"
         className="text-sm bg-transparent text-gray-12"

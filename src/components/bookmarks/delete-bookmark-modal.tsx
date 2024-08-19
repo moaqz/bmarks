@@ -41,7 +41,7 @@ export function DeleteBookmarkModal(props: Props) {
       <p className="text-sm text-gray-11 text-center">
         Are you sure you want to delete
         {" "}
-        <span className="text-blue-11">{bookmark.title}</span>
+        <span className="text-blue-11 break-words">{bookmark.title}</span>
         ?
       </p>
 
