@@ -13,7 +13,12 @@ export function ExportBookmarks() {
       config.bookmarksCollectionID,
       [],
     )
-      .then(({ documents }) => {
+      .then(({ documents, total }) => {
+        if (total) {
+          toast.info("You don't have any bookmarks to export.");
+          return;
+        }
+
         const bookmarks = documents.map((document) => {
           return {
             name: document.title,
