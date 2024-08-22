@@ -7,8 +7,7 @@ import { BookmarkCardEditor } from "./card-editor";
 import { TagSelector } from "~/components/tags/tag-selector";
 import { deleteDocument, updateDocument } from "~/lib/appwrite";
 import { BOOKMARKS_KEY } from "~/lib/swr";
-import type { Bookmark } from "~/types/collections";
-import type { Tag } from "~/types/tag";
+import type { Bookmark, Tag } from "~/types/collections";
 
 interface Props {
   data: Bookmark;
