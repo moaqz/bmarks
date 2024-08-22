@@ -1,6 +1,6 @@
 import { BookmarkCard } from "./card";
 import { BookmarkCardSkeleton } from "./card-skeleton";
-import type { Bookmark } from "~/types/bookmark";
+import type { Bookmark } from "~/types/collections";
 import { useBookmarks } from "~/hooks/useBookmarks";
 
 export function BookmarksList() {

@@ -5,7 +5,7 @@ import { mutate } from "swr";
 
 import { Modal } from "~/components/common/modal";
 import { useTags } from "~/hooks/useTags";
-import type { Tag } from "~/types/tag";
+import type { Tag } from "~/types/collections";
 import { BOOKMARKS_KEY } from "~/lib/swr";
 
 interface Props {

@@ -4,7 +4,7 @@ import { mutate } from "swr";
 
 import { Modal } from "~/components/common/modal";
 import { BOOKMARKS_KEY } from "~/lib/swr";
-import type { Bookmark } from "~/types/bookmark";
+import type { Bookmark } from "~/types/collections";
 
 interface Props {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { Bookmark } from "~/types/bookmark";
+import type { Bookmark } from "~/types/collections";
 
 interface Props {
   enabled: boolean;
