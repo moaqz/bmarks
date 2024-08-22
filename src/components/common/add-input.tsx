@@ -1,5 +1,7 @@
 import { toast } from "sonner";
 import { mutate } from "swr";
+import type { ClipboardEvent } from "react";
+import { useState } from "react";
 
 import { useForm } from "~/hooks/useForm";
 import { isValidHttpURL } from "~/lib/url";
@@ -13,6 +15,7 @@ import type { MetadataAPIResponse } from "~/types/metadata";
 const METADATA_ENDPOINT = "https://webmeta.moaqz.workers.dev";
 
 export function AddInput() {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     data,
     handleSubmit,
@@ -56,6 +59,14 @@ export function AddInput() {
       });
   };
 
+  const handleOnPaste = async (event: ClipboardEvent<HTMLInputElement>) => {
+    const _input = event.clipboardData.getData("text");
+    if (isValidHttpURL(_input)) {
+      setIsLoading(true);
+      await createBookmark(_input).finally(() => setIsLoading(false));
+    }
+  };
+
   const onSubmit = async ({ value }: { value: string }) => {
     if (!value) {
       return;
@@ -72,6 +83,8 @@ export function AddInput() {
     }
   };
 
+  const loading = isSubmitting || isLoading;
+
   return (
     <form onSubmit={async (event) => {
       event.preventDefault();
@@ -80,8 +93,8 @@ export function AddInput() {
     >
       <div className="flex items-center relative">
         <div className="absolute left-3 text-gray-9">
-          <svg width="24" height="24" className={isSubmitting ? "animate-spin" : undefined}>
-            <use href={`/icons/ui.svg#${isSubmitting ? "loader-circle" : "plus"}`} />
+          <svg width="24" height="24" className={loading ? "animate-spin" : undefined}>
+            <use href={`/icons/ui.svg#${loading ? "loader-circle" : "plus"}`} />
           </svg>
         </div>
 
@@ -92,7 +105,8 @@ export function AddInput() {
           name="value"
           value={data.value}
           onChange={handleChange}
-          disabled={isSubmitting}
+          onPaste={handleOnPaste}
+          disabled={loading}
         />
       </div>
     </form>
