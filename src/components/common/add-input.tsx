@@ -1,10 +1,9 @@
 import { toast } from "sonner";
 import { mutate } from "swr";
-import { ID } from "appwrite";
 
 import { useForm } from "~/hooks/useForm";
 import { isValidHttpURL } from "~/lib/url";
-import { SERVICES, config } from "~/lib/appwrite";
+import { createDocument } from "~/lib/appwrite";
 import { BOOKMARKS_KEY, TAGS_KEY } from "~/lib/swr";
 import type { MetadataAPIResponse } from "~/types/metadata";
 
@@ -34,12 +33,7 @@ export function AddInput() {
       title: metadata.title,
     };
 
-    SERVICES.databases.createDocument(
-      config.databaseID,
-      config.bookmarksCollectionID,
-      SERVICES.id.unique(),
-      payload,
-    )
+    createDocument("bookmarks", payload)
       .then(() => {
         toast.success("Bookmark created");
         mutate(BOOKMARKS_KEY);
@@ -51,12 +45,7 @@ export function AddInput() {
   };
 
   const createTag = async (name: string) => {
-    SERVICES.databases.createDocument(
-      config.databaseID,
-      config.tagsCollectionID,
-      ID.unique(),
-      { name },
-    )
+    createDocument("tags", { name })
       .then(() => {
         toast.success("Tag created");
         mutate(TAGS_KEY);

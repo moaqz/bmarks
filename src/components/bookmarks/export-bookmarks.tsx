@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { SERVICES, config } from "~/lib/appwrite";
+import { listDocuments } from "~/lib/appwrite";
 
 export function ExportBookmarks() {
   const [isExporting, setIsExporting] = useState(false);
@@ -8,11 +8,7 @@ export function ExportBookmarks() {
   const handleDownload = () => {
     setIsExporting(true);
 
-    SERVICES.databases.listDocuments(
-      config.databaseID,
-      config.bookmarksCollectionID,
-      [],
-    )
+    listDocuments("bookmarks")
       .then(({ documents, total }) => {
         if (total) {
           toast.info("You don't have any bookmarks to export.");

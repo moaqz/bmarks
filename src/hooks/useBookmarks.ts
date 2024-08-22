@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { useFilters } from "./useFilters";
 import { BOOKMARKS_KEY } from "~/lib/swr";
-import { SERVICES, config } from "~/lib/appwrite";
+import { listDocuments } from "~/lib/appwrite";
 
 const QUERIES = [
   Query.orderDesc("$createdAt"),
@@ -14,9 +14,8 @@ const QUERIES = [
 export function useBookmarks() {
   const { selectedTag } = useFilters();
   const { data, isLoading, mutate } = useSWR(BOOKMARKS_KEY, {
-    fetcher: () => SERVICES.databases.listDocuments(
-      config.databaseID,
-      config.bookmarksCollectionID,
+    fetcher: () => listDocuments(
+      "bookmarks",
       !selectedTag ? QUERIES : [...QUERIES, Query.equal("tag_id", selectedTag)],
     ),
   });

@@ -2,7 +2,7 @@ import { ID } from "appwrite";
 import type { PropsWithChildren } from "react";
 import { createContext, useCallback, useEffect, useState } from "react";
 
-import { SERVICES } from "~/lib/appwrite";
+import { account } from "~/lib/appwrite";
 import type { UserModel } from "~/types/appwrite";
 
 export const AUTH_STATES = {
@@ -29,7 +29,7 @@ export function AuthProvider(props: PropsWithChildren) {
   const [user, setUser] = useState<UserModel | null>(null);
 
   const revalidateSession = useCallback(async () => {
-    const user = await SERVICES.account.get().catch(() => null);
+    const user = await account.get().catch(() => null);
 
     if (user) {
       setUser(user);
@@ -62,21 +62,18 @@ export function AuthProvider(props: PropsWithChildren) {
   }, [authState, revalidateSession]);
 
   const login = useCallback(async (email: string, password: string) => {
-    await SERVICES
-      .account
-      .createEmailPasswordSession(email, password);
-
+    await account.createEmailPasswordSession(email, password);
     setAuthState(AUTH_STATES.pending);
   }, []);
 
   const logout = useCallback(async () => {
-    await SERVICES.account.deleteSession("current");
+    await account.deleteSession("current");
     setUser(null);
     setAuthState(AUTH_STATES.pending);
   }, []);
 
   const register = useCallback(async (email: string, password: string) => {
-    await SERVICES.account.create(
+    await account.create(
       ID.unique(),
       email,
       password,

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { toast } from "sonner";
 import { mutate } from "swr";
-import { SERVICES, config } from "~/lib/appwrite";
+import { deleteDocument } from "~/lib/appwrite";
 import { TAGS_KEY } from "~/lib/swr";
 
 interface Props {
@@ -21,12 +21,7 @@ export function TagBadge(props: Props) {
   const handleOnDelete = () => {
     closeModal();
 
-    const promise = SERVICES.databases.deleteDocument(
-      config.databaseID,
-      config.tagsCollectionID,
-      id,
-    );
-
+    const promise = deleteDocument("tags", id);
     toast.promise(promise, {
       loading: "Deleting tag...",
       error: "Unable to delete tag, try again.",

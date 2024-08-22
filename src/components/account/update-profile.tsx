@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 
 import { useForm } from "~/hooks/useForm";
-import { SERVICES } from "~/lib/appwrite";
+import { account } from "~/lib/appwrite";
 import { useAuth } from "~/hooks/useAuth";
 
 export function UpdateProfile() {
@@ -17,7 +17,7 @@ export function UpdateProfile() {
       event.preventDefault();
 
       handleSubmit(async ({ name }) => {
-        await SERVICES.account.updateName(name)
+        await account.updateName(name)
           .then(() => {
             toast.success("Name has been updated");
             revalidateSession();

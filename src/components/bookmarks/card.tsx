@@ -5,7 +5,7 @@ import { mutate } from "swr";
 import { DeleteBookmarkModal } from "./delete-bookmark-modal";
 import { BookmarkCardEditor } from "./card-editor";
 import { TagSelector } from "~/components/tags/tag-selector";
-import { SERVICES, config } from "~/lib/appwrite";
+import { deleteDocument, updateDocument } from "~/lib/appwrite";
 import { BOOKMARKS_KEY } from "~/lib/swr";
 import type { Bookmark } from "~/types/bookmark";
 import type { Tag } from "~/types/tag";
@@ -23,11 +23,7 @@ export function BookmarkCard(props: Props) {
   const [tagSelectorModalOpen, setTagSelectorMenu] = useState(false);
 
   const handleOnDelete = () => {
-    return SERVICES.databases.deleteDocument(
-      config.databaseID,
-      config.bookmarksCollectionID,
-      bookmark.$id,
-    );
+    return deleteDocument("bookmarks", bookmark.$id);
   };
 
   const handleOnUpdate = (newTitle: string) => {
@@ -36,12 +32,9 @@ export function BookmarkCard(props: Props) {
       return;
     }
 
-    const promise = SERVICES.databases.updateDocument(
-      config.databaseID,
-      config.bookmarksCollectionID,
-      bookmark.$id,
-      { title: newTitle },
-    );
+    const promise = updateDocument("bookmarks", bookmark.$id, {
+      title: newTitle,
+    });
 
     toast.promise(promise, {
       loading: "Updating bookmark...",
@@ -58,12 +51,9 @@ export function BookmarkCard(props: Props) {
   };
 
   const handleOnTagSelect = (selectedTag: Tag | null) => {
-    return SERVICES.databases.updateDocument(
-      config.databaseID,
-      config.bookmarksCollectionID,
-      bookmark.$id,
-      { tag_id: selectedTag ? selectedTag.$id : null },
-    );
+    return updateDocument("bookmarks", bookmark.$id, {
+      tag_id: selectedTag ? selectedTag.$id : null,
+    });
   };
 
   const ACTIONS = [
