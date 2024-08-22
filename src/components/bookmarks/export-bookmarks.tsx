@@ -10,7 +10,7 @@ export function ExportBookmarks() {
 
     listDocuments("bookmarks")
       .then(({ documents, total }) => {
-        if (total) {
+        if (total <= 0) {
           toast.info("You don't have any bookmarks to export.");
           return;
         }
