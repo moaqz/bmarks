@@ -20,7 +20,7 @@
 3. Create project
 4. Login with `pnpm appwrite login`
 5. Update project ID in `appwrite.json`
-6. Deploy project with `pnpm deploy`
+6. Deploy project with `pnpm appwrite:deploy`
 
 ## 👀 Client Setup
 

@@ -10,7 +10,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "deploy": "pnpm appwrite push all"
+    "appwrite:deploy": "pnpm appwrite push all"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.2",
