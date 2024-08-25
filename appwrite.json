@@ -1,0 +1,83 @@
+{
+  "projectId": "66c0dfd40008f9215b5f",
+  "projectName": "bmarks",
+  "databases": [
+    {
+      "$id": "66c0e349003e19db9f42",
+      "name": "main",
+      "enabled": true
+    }
+  ],
+  "collections": [
+    {
+      "$id": "66c0e34c00103043270c",
+      "$permissions": [
+        "create(\"users\")"
+      ],
+      "databaseId": "66c0e349003e19db9f42",
+      "name": "bookmarks",
+      "enabled": true,
+      "documentSecurity": true,
+      "attributes": [
+        {
+          "key": "url",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "format": "url",
+          "default": null
+        },
+        {
+          "key": "title",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 255,
+          "default": null
+        },
+        {
+          "key": "favicon_url",
+          "type": "string",
+          "required": false,
+          "array": false,
+          "format": "url",
+          "default": null
+        },
+        {
+          "key": "tag_id",
+          "type": "relationship",
+          "required": false,
+          "array": false,
+          "relatedCollection": "66c0e34e00293817667b",
+          "relationType": "manyToOne",
+          "twoWay": false,
+          "twoWayKey": "66c0e34c00103043270c",
+          "onDelete": "setNull",
+          "side": "parent"
+        }
+      ],
+      "indexes": []
+    },
+    {
+      "$id": "66c0e34e00293817667b",
+      "$permissions": [
+        "create(\"users\")"
+      ],
+      "databaseId": "66c0e349003e19db9f42",
+      "name": "tags",
+      "enabled": true,
+      "documentSecurity": true,
+      "attributes": [
+        {
+          "key": "name",
+          "type": "string",
+          "required": true,
+          "array": false,
+          "size": 40,
+          "default": null
+        }
+      ],
+      "indexes": []
+    }
+  ]
+}
