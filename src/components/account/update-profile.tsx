@@ -1,8 +1,8 @@
 import { toast } from "sonner";
 
+import { useAuth } from "~/hooks/useAuth";
 import { useForm } from "~/hooks/useForm";
 import { account } from "~/lib/appwrite";
-import { useAuth } from "~/hooks/useAuth";
 
 export function UpdateProfile() {
   const { revalidateSession, user } = useAuth();
@@ -13,23 +13,23 @@ export function UpdateProfile() {
   const hasChanged = user?.name === data.name;
 
   return (
-    <form onSubmit={(event) => {
-      event.preventDefault();
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
 
-      handleSubmit(async ({ name }) => {
-        await account.updateName(name)
-          .then(() => {
-            toast.success("Name has been updated");
-            revalidateSession();
-          })
-          .catch(e => toast.error(e.message));
-      });
-    }}
+        handleSubmit(async ({ name }) => {
+          await account
+            .updateName(name)
+            .then(() => {
+              toast.success("Name has been updated");
+              revalidateSession();
+            })
+            .catch((e) => toast.error(e.message));
+        });
+      }}
     >
       <article className="card">
-        <h2 className="text-2xl font-medium">
-          Profile
-        </h2>
+        <h2 className="text-2xl font-medium">Profile</h2>
 
         <div className="form-item">
           <label htmlFor="email" className="label">
@@ -63,16 +63,16 @@ export function UpdateProfile() {
 
         <div>
           <button type="submit" className="button" disabled={hasChanged}>
-            {isSubmitting
-              ? (
-                  <>
-                    <svg width="24" height="24" className="animate-spin">
-                      <use href="/icons/ui.svg#loader-circle" />
-                    </svg>
-                    <span>Updating...</span>
-                  </>
-                )
-              : "Update"}
+            {isSubmitting ? (
+              <>
+                <svg width="24" height="24" className="animate-spin">
+                  <use href="/icons/ui.svg#loader-circle" />
+                </svg>
+                <span>Updating...</span>
+              </>
+            ) : (
+              "Update"
+            )}
           </button>
         </div>
       </article>

@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import { useForm } from "~/hooks/useForm";
 import { useAuth } from "~/hooks/useAuth";
+import { useForm } from "~/hooks/useForm";
 
 interface SignUpData {
   email: string;
@@ -13,12 +13,8 @@ interface SignUpData {
 export function SignUpView() {
   const { register } = useAuth();
   const navigate = useNavigate();
-  const {
-    data,
-    handleChange,
-    handleSubmit,
-    isSubmitting,
-  } = useForm<SignUpData>();
+  const { data, handleChange, handleSubmit, isSubmitting } =
+    useForm<SignUpData>();
 
   const onSubmit = async (data: SignUpData) => {
     try {
@@ -29,8 +25,7 @@ export function SignUpView() {
 
       await register(data.email, data.password);
       navigate("/bookmarks");
-    }
-    catch (e) {
+    } catch (e) {
       if (e instanceof Error) {
         toast.error(e.message);
       }
@@ -39,9 +34,7 @@ export function SignUpView() {
 
   return (
     <div className="flex flex-col gap-y-6">
-      <h1 className="text-3xl font-extrabold">
-        Sign up
-      </h1>
+      <h1 className="text-3xl font-extrabold">Sign up</h1>
 
       <form
         onSubmit={(event) => {
@@ -51,13 +44,14 @@ export function SignUpView() {
         className="flex flex-col gap-y-3"
       >
         <div className="form-item">
-          <label className="label">
+          <label htmlFor="email" className="label">
             Email
           </label>
           <input
             type="email"
             required
             name="email"
+            id="email"
             value={data.email}
             onChange={handleChange}
             className="input-text"
@@ -66,12 +60,13 @@ export function SignUpView() {
         </div>
 
         <div className="form-item">
-          <label className="label">
+          <label htmlFor="password" className="label">
             Password
           </label>
           <input
             type="password"
             required
+            id="password"
             name="password"
             minLength={8}
             value={data.password}
@@ -82,12 +77,13 @@ export function SignUpView() {
         </div>
 
         <div className="form-item">
-          <label className="label">
+          <label htmlFor="password_confirmation" className="label">
             Password Confirmation
           </label>
           <input
             type="password"
             required
+            id="password_confirmation"
             name="password_confirmation"
             minLength={8}
             value={data.password_confirmation}
@@ -104,7 +100,9 @@ export function SignUpView() {
 
       <div className="text-sm text-gray-11">
         <span className="mr-1"> Already have an account?</span>
-        <Link to="/login" className="text-blue-12 underline">Login</Link>
+        <Link to="/login" className="text-blue-12 underline">
+          Login
+        </Link>
       </div>
     </div>
   );

@@ -13,14 +13,16 @@ export function HomeView() {
           Simple bookmark manager to organize your favorites websites.
         </p>
         <div>
-          <Link to="/bookmarks" className="button">Get started</Link>
+          <Link to="/bookmarks" className="button">
+            Get started
+          </Link>
         </div>
       </section>
 
       <section className="flex flex-col gap-y-6">
         <h2 className="font-medium text-2xl">Features</h2>
 
-        {FEATURES.map(feature => (
+        {FEATURES.map((feature) => (
           <div key={feature.iconName} className="flex items-center gap-x-3">
             <div className="items-center justify-center inline-flex rounded-md bg-blue-9 text-white size-9">
               <svg width="20" height="20">

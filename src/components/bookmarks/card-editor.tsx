@@ -9,12 +9,7 @@ interface Props {
 }
 
 export function BookmarkCardEditor(props: Props) {
-  const {
-    bookmark,
-    enabled,
-    onCancel,
-    onSave,
-  } = props;
+  const { bookmark, enabled, onCancel, onSave } = props;
   const [title, setTitle] = useState(() => bookmark.title);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -27,7 +22,10 @@ export function BookmarkCardEditor(props: Props) {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         onCancel();
       }
     };
@@ -48,14 +46,16 @@ export function BookmarkCardEditor(props: Props) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       onSave(title);
-    }
-    else if (event.key === "Escape") {
+    } else if (event.key === "Escape") {
       onCancel();
     }
   };
 
   return (
-    <div ref={wrapperRef} className="flex flex-col group gap-0.5 order-10 col-span-2 sm:order-2 sm:col-span-1 sm:max-w-90">
+    <div
+      ref={wrapperRef}
+      className="flex flex-col group gap-0.5 order-10 col-span-2 sm:order-2 sm:col-span-1 sm:max-w-90"
+    >
       <input
         type="text"
         className="text-sm bg-transparent text-gray-12"

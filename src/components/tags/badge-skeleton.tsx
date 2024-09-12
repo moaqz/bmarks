@@ -1,3 +1,3 @@
 export function TagBadgeSkeleton() {
-  return <div className="bg-gray-3 rounded px-2 animate-pulse h-6 w-15"></div>;
+  return <div className="bg-gray-3 rounded animate-pulse px-2 h-6 w-15" />;
 }

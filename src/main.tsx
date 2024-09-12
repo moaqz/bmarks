@@ -11,25 +11,35 @@ import { RootLayout } from "~/components/layouts/root";
 import { AuthProvider } from "~/contexts/auth-context";
 
 // Views and Layouts.
-const HomeView = lazy(() => import("~/views/home").then((module) => {
-  return { default: module.HomeView };
-}));
+const HomeView = lazy(() =>
+  import("~/views/home").then((module) => {
+    return { default: module.HomeView };
+  }),
+);
 
-const SignUpView = lazy(() => import("~/views/sign-up").then((module) => {
-  return { default: module.SignUpView };
-}));
+const SignUpView = lazy(() =>
+  import("~/views/sign-up").then((module) => {
+    return { default: module.SignUpView };
+  }),
+);
 
-const LoginView = lazy(() => import("~/views/login").then((module) => {
-  return { default: module.LoginView };
-}));
+const LoginView = lazy(() =>
+  import("~/views/login").then((module) => {
+    return { default: module.LoginView };
+  }),
+);
 
-const BookmarksView = lazy(() => import("~/views/bookmarks").then((module) => {
-  return { default: module.BookmarksView };
-}));
+const BookmarksView = lazy(() =>
+  import("~/views/bookmarks").then((module) => {
+    return { default: module.BookmarksView };
+  }),
+);
 
-const AccountView = lazy(() => import("~/views/account").then((module) => {
-  return { default: module.AccountView };
-}));
+const AccountView = lazy(() =>
+  import("~/views/account").then((module) => {
+    return { default: module.AccountView };
+  }),
+);
 
 const router = createBrowserRouter([
   {
@@ -59,6 +69,7 @@ const router = createBrowserRouter([
   },
 ]);
 
+// biome-ignore lint/style/noNonNullAssertion:
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>

@@ -1,10 +1,3 @@
-export const GUEST_ROUTES = [
-  "/",
-  "/login",
-  "/sign-up",
-];
+export const GUEST_ROUTES = ["/", "/login", "/sign-up"];
 
-export const PROTECTED_ROUTES = [
-  "/bookmarks",
-  "/account",
-];
+export const PROTECTED_ROUTES = ["/bookmarks", "/account"];

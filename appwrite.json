@@ -11,9 +11,7 @@
   "collections": [
     {
       "$id": "66c0e34c00103043270c",
-      "$permissions": [
-        "create(\"users\")"
-      ],
+      "$permissions": ["create(\"users\")"],
       "databaseId": "66c0e349003e19db9f42",
       "name": "bookmarks",
       "enabled": true,
@@ -60,9 +58,7 @@
     },
     {
       "$id": "66c0e34e00293817667b",
-      "$permissions": [
-        "create(\"users\")"
-      ],
+      "$permissions": ["create(\"users\")"],
       "databaseId": "66c0e349003e19db9f42",
       "name": "tags",
       "enabled": true,

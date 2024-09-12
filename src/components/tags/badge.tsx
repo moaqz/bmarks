@@ -34,31 +34,39 @@ export function TagBadge(props: Props) {
   };
 
   return (
-    <div className={`inline-flex items-center gap-1 select-none text-sm font-semibold bg-blue-3 text-blue-12 rounded transition-colors ${selected ? "bg-blue-7" : ""} hover:bg-blue-7`}>
+    <div
+      className={`inline-flex items-center gap-1 select-none text-sm font-semibold bg-blue-3 text-blue-12 rounded transition-colors ${selected ? "bg-blue-7" : ""} hover:bg-blue-7`}
+    >
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: */}
       <span onClick={onSelect} className="px-2 py-1">
         {name}
       </span>
 
-      <button className="bg-transparent mr-2" onClick={openModal}>
+      <button type="button" className="bg-transparent mr-2" onClick={openModal}>
         <svg width="14" height="14">
           <use href="/icons/ui.svg#x" />
         </svg>
       </button>
 
-      <dialog ref={dialogRef} className="w-full p-6 rounded bg-gray-2 border border-gray-3 max-w-lg text-inherit backdrop:bg-gray-2/80">
+      <dialog
+        ref={dialogRef}
+        className="w-full p-6 rounded bg-gray-2 border border-gray-3 max-w-lg text-inherit backdrop:bg-gray-2/80"
+      >
         <div className="text-center flex flex-col gap-y-3 mb-6">
           <h1 className="font-bold text-xl">Delete tag</h1>
           <p className="text-sm text-gray-11">
-            Are you sure you want to delete
-            {" "}
-            <span className="text-blue-11">{name}</span>
-            ?
+            Are you sure you want to delete{" "}
+            <span className="text-blue-11">{name}</span>?
           </p>
         </div>
 
         <div className="flex items-center justify-center gap-3">
-          <button type="button" className="button-gray" onClick={closeModal}>Cancel</button>
-          <button type="button" className="button" onClick={handleOnDelete}>Yes, delete it!</button>
+          <button type="button" className="button-gray" onClick={closeModal}>
+            Cancel
+          </button>
+          <button type="button" className="button" onClick={handleOnDelete}>
+            Yes, delete it!
+          </button>
         </div>
       </dialog>
     </div>

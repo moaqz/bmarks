@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-import { useForm } from "~/hooks/useForm";
 import { useAuth } from "~/hooks/useAuth";
+import { useForm } from "~/hooks/useForm";
 
 interface LoginData {
   email: string;
@@ -12,19 +12,14 @@ interface LoginData {
 export function LoginView() {
   const navigate = useNavigate();
   const { login } = useAuth();
-  const {
-    data,
-    handleChange,
-    handleSubmit,
-    isSubmitting,
-  } = useForm<LoginData>();
+  const { data, handleChange, handleSubmit, isSubmitting } =
+    useForm<LoginData>();
 
   const onSubmit = async (data: LoginData) => {
     try {
       await login(data.email, data.password);
       navigate("/bookmarks");
-    }
-    catch (e) {
+    } catch (e) {
       if (e instanceof Error) {
         toast.error(e.message);
       }
@@ -43,11 +38,12 @@ export function LoginView() {
         className="flex flex-col gap-y-3"
       >
         <div className="form-item">
-          <label className="label">
+          <label htmlFor="email" className="label">
             Email
           </label>
           <input
             type="email"
+            id="email"
             required
             name="email"
             value={data.email}
@@ -58,12 +54,13 @@ export function LoginView() {
         </div>
 
         <div className="form-item">
-          <label className="label">
+          <label htmlFor="password" className="label">
             Password
           </label>
           <input
             type="password"
             required
+            id="password"
             name="password"
             minLength={8}
             value={data.password}
@@ -80,7 +77,9 @@ export function LoginView() {
 
       <div className="text-sm text-gray-11">
         <span className="mr-1"> Don't have an account?</span>
-        <Link to="/sign-up" className="text-blue-12 underline">Sign up</Link>
+        <Link to="/sign-up" className="text-blue-12 underline">
+          Sign up
+        </Link>
       </div>
     </div>
   );

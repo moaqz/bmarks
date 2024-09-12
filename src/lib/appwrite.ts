@@ -9,8 +9,11 @@ export const config = {
 };
 
 if (
-  !config.endpoint || !config.project || !config.databaseID
-  || !config.bookmarksCollectionID || !config.tagsCollectionID
+  !config.endpoint ||
+  !config.project ||
+  !config.databaseID ||
+  !config.bookmarksCollectionID ||
+  !config.tagsCollectionID
 ) {
   throw new Error("Missing one or more environment variables.");
 }
@@ -43,10 +46,7 @@ function createDocument(
   );
 }
 
-function deleteDocument(
-  collection: Collection,
-  documentId: string,
-) {
+function deleteDocument(collection: Collection, documentId: string) {
   return databases.deleteDocument(
     config.databaseID,
     COLLECTIONS[collection],
@@ -69,10 +69,7 @@ function updateDocument(
   );
 }
 
-function listDocuments(
-  collection: Collection,
-  queries?: string[],
-) {
+function listDocuments(collection: Collection, queries?: string[]) {
   return databases.listDocuments(
     config.databaseID,
     COLLECTIONS[collection],
@@ -80,4 +77,11 @@ function listDocuments(
   );
 }
 
-export { account, databases, createDocument, deleteDocument, updateDocument, listDocuments };
+export {
+  account,
+  databases,
+  createDocument,
+  deleteDocument,
+  updateDocument,
+  listDocuments,
+};

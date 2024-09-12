@@ -24,10 +24,9 @@ export function ExportBookmarks() {
           };
         });
 
-        const blob = new Blob(
-          [JSON.stringify(bookmarks, null, 2)],
-          { type: "application/json" },
-        );
+        const blob = new Blob([JSON.stringify(bookmarks, null, 2)], {
+          type: "application/json",
+        });
 
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
@@ -51,17 +50,22 @@ export function ExportBookmarks() {
       </div>
 
       <div>
-        <button type="button" className="button" onClick={handleDownload} disabled={isExporting}>
-          {isExporting
-            ? (
-                <>
-                  <svg width="24" height="24" className="animate-spin">
-                    <use href="/icons/ui.svg#loader-circle" />
-                  </svg>
-                  <span>Exporting...</span>
-                </>
-              )
-            : "Export"}
+        <button
+          type="button"
+          className="button"
+          onClick={handleDownload}
+          disabled={isExporting}
+        >
+          {isExporting ? (
+            <>
+              <svg width="24" height="24" className="animate-spin">
+                <use href="/icons/ui.svg#loader-circle" />
+              </svg>
+              <span>Exporting...</span>
+            </>
+          ) : (
+            "Export"
+          )}
         </button>
       </div>
     </article>

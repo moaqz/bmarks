@@ -34,8 +34,7 @@ export function AuthProvider(props: PropsWithChildren) {
     if (user) {
       setUser(user);
       setAuthState(AUTH_STATES.authenticated);
-    }
-    else {
+    } else {
       setAuthState(AUTH_STATES.unauthenticated);
     }
   }, []);
@@ -72,25 +71,24 @@ export function AuthProvider(props: PropsWithChildren) {
     setAuthState(AUTH_STATES.pending);
   }, []);
 
-  const register = useCallback(async (email: string, password: string) => {
-    await account.create(
-      ID.unique(),
-      email,
-      password,
-      `user${ID.unique()}`,
-    );
-    await login(email, password);
-  }, [login]);
+  const register = useCallback(
+    async (email: string, password: string) => {
+      await account.create(ID.unique(), email, password, `user${ID.unique()}`);
+      await login(email, password);
+    },
+    [login],
+  );
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      authState,
-      logout,
-      register,
-      login,
-      revalidateSession,
-    }}
+    <AuthContext.Provider
+      value={{
+        user,
+        authState,
+        logout,
+        register,
+        login,
+        revalidateSession,
+      }}
     >
       {props.children}
     </AuthContext.Provider>

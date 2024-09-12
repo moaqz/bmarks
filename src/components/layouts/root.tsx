@@ -20,27 +20,27 @@ export function RootLayout() {
     }
 
     if (
-      authState === AUTH_STATES.unauthenticated
-      && !GUEST_ROUTES.includes(pathname)
+      authState === AUTH_STATES.unauthenticated &&
+      !GUEST_ROUTES.includes(pathname)
     ) {
       navigate("/login");
     }
 
     if (
-      authState === AUTH_STATES.authenticated
-      && GUEST_ROUTES.includes(pathname)
+      authState === AUTH_STATES.authenticated &&
+      GUEST_ROUTES.includes(pathname)
     ) {
       navigate("/bookmarks");
     }
 
     if (loading) {
       setLoading(false);
-    };
+    }
   }, [authState, pathname, loading, navigate]);
 
   if (loading) {
     return (
-      <div className="min-h-dvh grid place-content-center">
+      <div className="grid min-h-dvh place-content-center">
         <svg width="32" height="32" className="animate-spin text-blue-10">
           <use href="/icons/ui.svg#loader-circle" />
         </svg>
@@ -52,13 +52,14 @@ export function RootLayout() {
     <div className="flex flex-col px-4 min-h-dvh max-w-xl mx-auto gap-9">
       <Header />
       <main className="flex-1">
-        <Suspense fallback={(
-          <div className="flex justify-center">
-            <svg width="32" height="32" className="animate-spin text-blue-10">
-              <use href="/icons/ui.svg#loader-circle" />
-            </svg>
-          </div>
-        )}
+        <Suspense
+          fallback={
+            <div className="flex justify-center">
+              <svg width="32" height="32" className="animate-spin text-blue-10">
+                <use href="/icons/ui.svg#loader-circle" />
+              </svg>
+            </div>
+          }
         >
           <Outlet />
         </Suspense>

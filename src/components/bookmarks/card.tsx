@@ -2,12 +2,12 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { mutate } from "swr";
 
-import { DeleteBookmarkModal } from "./delete-bookmark-modal";
-import { BookmarkCardEditor } from "./card-editor";
 import { TagSelector } from "~/components/tags/tag-selector";
 import { deleteDocument, updateDocument } from "~/lib/appwrite";
 import { BOOKMARKS_KEY } from "~/lib/swr";
 import type { Bookmark, Tag } from "~/types/collections";
+import { BookmarkCardEditor } from "./card-editor";
+import { DeleteBookmarkModal } from "./delete-bookmark-modal";
 
 interface Props {
   data: Bookmark;
@@ -84,29 +84,27 @@ export function BookmarkCard(props: Props) {
         />
       </div>
 
-      {
-        editable
-          ? (
-              <BookmarkCardEditor
-                onSave={handleOnUpdate}
-                onCancel={() => setEditable(false)}
-                enabled={editable}
-                bookmark={bookmark}
-              />
-            )
-          : (
-              <a
-                href={bookmark.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                tabIndex={-1}
-                className="group flex flex-col gap-0.5 order-10 col-span-2 sm:order-2 sm:col-span-1 sm:max-w-90"
-              >
-                <h2 className="text-gray-12 text-sm line-clamp-3 break-words group-hover:underline">{bookmark.title}</h2>
-                <p className="text-sm text-gray-11 truncate">{bookmark.url}</p>
-              </a>
-            )
-      }
+      {editable ? (
+        <BookmarkCardEditor
+          onSave={handleOnUpdate}
+          onCancel={() => setEditable(false)}
+          enabled={editable}
+          bookmark={bookmark}
+        />
+      ) : (
+        <a
+          href={bookmark.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={-1}
+          className="group flex flex-col gap-0.5 order-10 col-span-2 sm:order-2 sm:col-span-1 sm:max-w-90"
+        >
+          <h2 className="text-gray-12 text-sm line-clamp-3 break-words group-hover:underline">
+            {bookmark.title}
+          </h2>
+          <p className="text-sm text-gray-11 truncate">{bookmark.url}</p>
+        </a>
+      )}
 
       <div className="inline-flex items-start gap-3 justify-end sm:order-3">
         {ACTIONS.map(({ action, icon, title }) => {
@@ -125,27 +123,23 @@ export function BookmarkCard(props: Props) {
           );
         })}
 
-        {deleteBookmarkModalOpen
-          ? (
-              <DeleteBookmarkModal
-                isOpen={deleteBookmarkModalOpen}
-                handleClose={() => setDeleteBookmarkModal(false)}
-                onSubmit={handleOnDelete}
-                bookmark={bookmark}
-              />
-            )
-          : null}
+        {deleteBookmarkModalOpen ? (
+          <DeleteBookmarkModal
+            isOpen={deleteBookmarkModalOpen}
+            handleClose={() => setDeleteBookmarkModal(false)}
+            onSubmit={handleOnDelete}
+            bookmark={bookmark}
+          />
+        ) : null}
 
-        {tagSelectorModalOpen
-          ? (
-              <TagSelector
-                defaultValue={bookmark.tag_id}
-                isOpen={tagSelectorModalOpen}
-                handleClose={() => setTagSelectorMenu(false)}
-                onSubmit={handleOnTagSelect}
-              />
-            )
-          : null}
+        {tagSelectorModalOpen ? (
+          <TagSelector
+            defaultValue={bookmark.tag_id}
+            isOpen={tagSelectorModalOpen}
+            handleClose={() => setTagSelectorMenu(false)}
+            onSubmit={handleOnTagSelect}
+          />
+        ) : null}
       </div>
     </article>
   );

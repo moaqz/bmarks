@@ -1,6 +1,6 @@
-import { TagsList } from "~/components/tags/list";
 import { BookmarksList } from "~/components/bookmarks/list";
 import { AddInput } from "~/components/common/add-input";
+import { TagsList } from "~/components/tags/list";
 import { FiltersProvider } from "~/contexts/filters-context";
 
 export function BookmarksView() {

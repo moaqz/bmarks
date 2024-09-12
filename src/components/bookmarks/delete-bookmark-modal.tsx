@@ -10,8 +10,8 @@ interface Props {
   isOpen: boolean;
   bookmark: Bookmark;
   handleClose: () => void;
-  onSubmit: () => Promise<void | object>;
-};
+  onSubmit: () => Promise<undefined | object>;
+}
 
 export function DeleteBookmarkModal(props: Props) {
   const { bookmark, isOpen, handleClose, onSubmit } = props;
@@ -39,10 +39,8 @@ export function DeleteBookmarkModal(props: Props) {
   return (
     <Modal title="Delete Bookmark" isOpen={isOpen} handleClose={onClose}>
       <p className="text-sm text-gray-11 text-center">
-        Are you sure you want to delete
-        {" "}
-        <span className="text-blue-11 break-words">{bookmark.title}</span>
-        ?
+        Are you sure you want to delete{" "}
+        <span className="text-blue-11 break-words">{bookmark.title}</span>?
       </p>
 
       <div className="flex items-center justify-center gap-3 mt-6">
@@ -50,17 +48,22 @@ export function DeleteBookmarkModal(props: Props) {
           Cancel
         </button>
 
-        <button type="button" className="button" onClick={handleBookmarkDelete} disabled={isDeleting}>
-          {isDeleting
-            ? (
-                <>
-                  <svg width="24" height="24" className="animate-spin">
-                    <use href="/icons/ui.svg#loader-circle" />
-                  </svg>
-                  <span>Deleting...</span>
-                </>
-              )
-            : "Yes, delete it!"}
+        <button
+          type="button"
+          className="button"
+          onClick={handleBookmarkDelete}
+          disabled={isDeleting}
+        >
+          {isDeleting ? (
+            <>
+              <svg width="24" height="24" className="animate-spin">
+                <use href="/icons/ui.svg#loader-circle" />
+              </svg>
+              <span>Deleting...</span>
+            </>
+          ) : (
+            "Yes, delete it!"
+          )}
         </button>
       </div>
     </Modal>

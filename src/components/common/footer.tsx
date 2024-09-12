@@ -14,15 +14,22 @@ export function Footer() {
       </div>
 
       <p>
-        Made by
-        {" "}
-        <a href={GITHUB_REPOSITORY} target="_blank" rel="noopener noreferrer" className="underline text-green-3">
+        Made by{" "}
+        <a
+          href={GITHUB_REPOSITORY}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline text-green-3"
+        >
           moaqz
-        </a>
-        {" "}
-        with
-        {" "}
-        <a href="https://appwrite.io" target="_blank" rel="noopener noreferrer" className="underline text-red-3">
+        </a>{" "}
+        with{" "}
+        <a
+          href="https://appwrite.io"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline text-red-3"
+        >
           Appwrite
         </a>
       </p>
