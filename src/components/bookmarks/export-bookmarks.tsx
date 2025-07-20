@@ -1,3 +1,4 @@
+import { Query } from "appwrite";
 import { useState } from "react";
 import { toast } from "sonner";
 import { listDocuments } from "~/lib/appwrite";
@@ -8,7 +9,7 @@ export function ExportBookmarks() {
   const handleDownload = () => {
     setIsExporting(true);
 
-    listDocuments("bookmarks")
+    listDocuments("bookmarks", [Query.limit(250)])
       .then(({ documents, total }) => {
         if (total <= 0) {
           toast.info("You don't have any bookmarks to export.");

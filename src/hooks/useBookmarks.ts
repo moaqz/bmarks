@@ -6,7 +6,7 @@ import { listDocuments } from "~/lib/appwrite";
 import { BOOKMARKS_KEY } from "~/lib/swr";
 import { useFilters } from "./useFilters";
 
-const QUERIES = [Query.orderDesc("$createdAt")];
+const QUERIES = [Query.limit(250), Query.orderDesc("$createdAt")];
 
 export function useBookmarks() {
   const { selectedTag } = useFilters();
