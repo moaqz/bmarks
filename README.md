@@ -1,3 +1,8 @@
+> [!WARNING]
+> **ARCHIVED PROJECT**
+> 
+> This project is no longer actively maintained and has been archived. No updates, bug fixes, or support will be provided. Feel free to fork if you wish to continue development.
+
 ## 🔥 Features
 
 - Organize your bookmarks by tags.
